@@ -4,14 +4,14 @@ public class User {
     private int id;
     private String username;
     private String email;
-    private String status;
+    private int age;
 
     //Constructor
-    public User(int id, String username, String email, String status){
+    public User(int id, String username, String email, int age){
         this.id = id;
         this.username = username;
         this.email = email;
-        this.status = status;
+        this.age = age;
     }
 
     //Getter
@@ -27,16 +27,16 @@ public class User {
         return email;
     }
 
-    public String getStatus() {
-        return status;
+    public int getAge() {
+        return age;
     }
 
     //Hien thong tin
-    public void display(){
-        System.out.println("ID: " + id
-                + "  |  Username: " + username
-                + "  |  Email: " + email
-                + "  |  Status: " + status);
+    public String toString(){
+        return "ID: " + id
+                + "  |  username: " + username
+                + "  |  email: " + email
+                + "  |  age: " + age;
     }
 
 }

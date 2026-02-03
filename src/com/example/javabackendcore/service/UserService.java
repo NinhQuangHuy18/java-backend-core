@@ -10,19 +10,30 @@ public class UserService {
 
     // Them user
     public void addUser(User user){
-        users.add(user);
-    }
+        if(user.getUsername() == null || user.getUsername().isEmpty()){
+            System.out.println("User khong duoc rong");
+            return;
+        }
 
-    // Hien thi danh sach user
-    public void showAllUser(){
-        if(users.isEmpty()){
-            System.out.println("Danh sach trong");
+        if(!user.getEmail().contains("@")){
+            System.out.println("Email khong hop le");
+            return;
+        }
+
+        if(user.getAge() < 18){
+            System.out.println("Tuoi phai >= 18");
             return;
         }
 
         for(User u : users){
-            u.display();
+            if(u.getUsername().equals(user.getUsername())){
+                System.out.println("Username da ton tai");
+                return;
+            }
         }
+
+        users.add(user);
+        System.out.println("Them user thanh cong");
     }
 
     // Tim user theo ten
@@ -35,4 +46,31 @@ public class UserService {
         return null;
     }
 
+    // Tim thong tin theo tuoi
+    public List<User> findByAgeGreaterThan(int age){
+        List<User> result = new ArrayList<>();
+        for(User u : users){
+            if(u.getAge() > age){
+                result.add(u);
+            }
+        }
+        return result;
+    }
+
+    // Xoa theo id
+    public boolean deleteById(int id){
+        return users.removeIf(u -> u.getId() == id);
+    }
+
+    // Hien thi danh sach
+    public void showAll(){
+        if(users.isEmpty()){
+            System.out.println("Danh sach rong");
+            return;
+        }
+
+        for(User u : users){
+            System.out.println(u);
+        }
+    }
 }
